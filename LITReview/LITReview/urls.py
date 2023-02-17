@@ -21,6 +21,6 @@ from flux import views as flux
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login/', login.login),
-    path('signin/', login.signin),
+    path('register/', login.register),
     path('flux/', flux.flux),    
 ]

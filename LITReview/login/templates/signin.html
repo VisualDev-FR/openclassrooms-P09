@@ -8,22 +8,14 @@
 </head>
 <body>
 
-    <form action="">
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
         <fieldset>
             <legend>Inscription:</legend>
-
-            <label for="username">Nom d'utilisateur:</label><br>
-            <input type="text" id="fname" name="username"><br>
-
-            <label for="password">Mot de passe:</label><br>
-            <input type="password" id="lname" name="password"><br>
-
-            <label for="confirm">Confirmer le mot de passe :</label><br>
-            <input type="password" id="lname" name="confirm"><br><br>          
-
-            <input type="submit" value="S'inscrire">
-        </fieldset>
-    </form>    
+            {{ form.as_p }}
+            <br><input type="submit" value="S'inscrire">
+        </fieldset>    
+    </form>
 
 </body>
 </html>

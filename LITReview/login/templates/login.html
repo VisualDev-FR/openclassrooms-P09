@@ -12,22 +12,17 @@
 </head>
 <body>
 
-    <form action="">
+    <form action="" method="post" novalidate>
+        {% csrf_token %}
         <fieldset>
             <legend>Connectez-vous :</legend>
-
-            <label for="username">Nom d'utilisateur:</label><br>
-            <input type="text" id="fname" name="username"><br>
-
-            <label for="password">Mot de passe:</label><br>
-            <input type="password" id="lname" name="password"><br><br>
-
-            <input type="submit" value="Se connecter">
-        </fieldset>
-    </form>
+            {{ form.as_p }}
+            <br><input type="submit" value="Se connecter">
+        </fieldset>    
+    </form>    
 
     <p>Inscrivez vous maintenant</p>
-    <a href="/signin"><input type="button" value="S'incrire"></a>
+    <a href="/register"><input type="button" value="S'incrire"></a>
     
 </body>
 </html>
