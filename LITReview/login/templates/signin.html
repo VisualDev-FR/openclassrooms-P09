@@ -1,33 +1,29 @@
 <!DOCTYPE html>
-
-{% load static %}
-
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <title>LITReview - Connexion</title>
+    <title>LITReview - Inscription</title>
 </head>
 <body>
 
     <form action="">
         <fieldset>
-            <legend>Connectez-vous :</legend>
+            <legend>Inscription:</legend>
 
             <label for="username">Nom d'utilisateur:</label><br>
             <input type="text" id="fname" name="username"><br>
 
             <label for="password">Mot de passe:</label><br>
-            <input type="password" id="lname" name="password"><br><br>
+            <input type="password" id="lname" name="password"><br>
 
-            <input type="submit" value="Se connecter">
+            <label for="confirm">Confirmer le mot de passe :</label><br>
+            <input type="password" id="lname" name="confirm"><br><br>          
+
+            <input type="submit" value="S'inscrire">
         </fieldset>
-    </form>
+    </form>    
 
-    <p>Inscrivez vous maintenant</p>
-    <a href="/signin"><input type="button" value="S'incrire"></a>
-    
 </body>
 </html>
