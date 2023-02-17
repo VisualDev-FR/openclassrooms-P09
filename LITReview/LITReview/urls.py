@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from login import views
+from login import views as login
+from flux import views as flux
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('hello/', views.hello),
+    path('login/', login.login),
+    path('flux/', flux.flux)
 ]
