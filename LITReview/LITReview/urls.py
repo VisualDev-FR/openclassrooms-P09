@@ -20,7 +20,8 @@ from flux import views as flux
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/', login.login),
-    path('register/', login.register),
-    path('flux/', flux.flux),    
+    path('accounts/login/', login.login, name='login'),
+    path('register/', login.register, name='register'),
+    path('flux/', flux.flux, name='flux'),
+    path('logout/', flux.deconection, name='logout')
 ]

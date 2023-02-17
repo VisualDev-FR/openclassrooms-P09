@@ -1,14 +1,9 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
+from django.contrib import auth 
+from django.contrib.auth.models import User
 
 from login.forms import LoginForm, RegisterForm
-from flux.views import flux
-
-from django.contrib.auth.models import User
-from django.contrib.auth import authenticate
-from django.db.utils import IntegrityError 
-from django.contrib import messages
-
 
 def login(request: HttpRequest):
 
@@ -18,11 +13,14 @@ def login(request: HttpRequest):
         username: str = request.POST['username']
         password: str = request.POST['password']
 
-        user = authenticate(username=username, password=password)
+        user: User = auth.authenticate(username=username, password=password)
+
+        print("user is none (before redirect): " + str(user is None))
 
         if user is not None:
             # A backend authenticated the credentials
-            return redirect(flux)
+            auth.login(request, user)
+            return redirect('flux')
 
     else:
         form = LoginForm()
@@ -38,7 +36,9 @@ def register(request: HttpRequest):
         form = RegisterForm(data=request.POST)
         if form.is_valid():
             form.save()
-            return redirect(login)
+            return redirect('login')
 
 
     return render(request, 'signin.html', {'form':form})
+
+    
