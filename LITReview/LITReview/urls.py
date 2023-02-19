@@ -26,5 +26,5 @@ urlpatterns = [
     path('feed/', feed.feed, name='feed'),
     path('logout/', feed.deconection, name='logout'),
     path('new_ticket', factory.create_ticket, name='new_ticket'),
-    path('new_ticket', factory.create_review, name='new_review'),
+    path('new_review', factory.create_review, name='new_review'),
 ]

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/new_ticket.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h1>Créer un ticket</h1>
+
+    <form method="POST">
+        {% csrf_token %}
+        <fieldset>
+            {% for field in form %}
+            <div class="fieldWrapper">
+                {{ field.errors }} 
+                {{ field.label_tag }}<br>
+                {{ field }} <br><br>
+            </div>
+        {% endfor %}
+        <input type="submit" value="Envoyer">
+        </fieldset>
+    </form>
+
+{% endblock %}
