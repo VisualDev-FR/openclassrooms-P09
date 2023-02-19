@@ -1,6 +1,6 @@
 from django.http import HttpResponse, HttpRequest
 from django.shortcuts import render, redirect
-from django.contrib import auth 
+from django.contrib import auth
 from django.contrib.auth.models import User
 
 from login.forms import LoginForm, RegisterForm
@@ -15,12 +15,10 @@ def login(request: HttpRequest):
 
         user: User = auth.authenticate(username=username, password=password)
 
-        print("user is none (before redirect): " + str(user is None))
-
         if user is not None:
             # A backend authenticated the credentials
             auth.login(request, user)
-            return redirect('flux')
+            return redirect('feed')
 
     else:
         form = LoginForm()
@@ -39,6 +37,6 @@ def register(request: HttpRequest):
             return redirect('login')
 
 
-    return render(request, 'signin.html', {'form':form})
+    return render(request, 'register.html', {'form':form})
 
     

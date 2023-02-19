@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from login import views as login
-from flux import views as flux
+from feed import views as feed
+from factory import views as factory
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', login.login, name='login'),
     path('register/', login.register, name='register'),
-    path('flux/', flux.flux, name='flux'),
-    path('logout/', flux.deconection, name='logout')
+    path('feed/', feed.feed, name='feed'),
+    path('logout/', feed.deconection, name='logout'),
+    path('new_ticket', factory.create_ticket, name='new_ticket'),
+    path('new_ticket', factory.create_review, name='new_review'),
 ]
