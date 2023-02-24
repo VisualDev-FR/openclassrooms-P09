@@ -12,13 +12,13 @@
 </head>
 <body>
 
-    <ul id="menu">
-        <li><h1>LITReview</h1></li>
-        <li><p>Flux</p></li>
-        <li><p>Posts</p></li>
-        <li><p>Abonnements</p></li>
-        <li><a href="{% url 'logout' %}"><p>Se déconnecter</p></a></li>
-    </ul>     
+    <div id="menu">
+        <h1>LITReview</h1>
+        <a href="{% url 'feed' %}">Flux</a>
+        <a href="">Posts</a>
+        <a href="">Abonnements</a>
+        <a href="{% url 'logout' %}">Se déconnecter</a>
+    </div>     
 
     {% block content %}{% endblock %}
 </body>

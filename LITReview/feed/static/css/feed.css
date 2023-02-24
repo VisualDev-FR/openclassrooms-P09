@@ -1,10 +1,11 @@
 body
 {
     background-color: #111;
-    margin-top: 100px;
+    margin-top: 150px;
     color: aliceblue;
     font-family: Arial, Helvetica, sans-serif;
 }
+
 
 #menu
 {
@@ -16,23 +17,33 @@ body
     top: 0;
     left: 0;
     margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin-right: 10px;
+    min-height: 80px;
+}
+
+#menu > h1 {
+    position: absolute;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: fit-content;
 }
   
-#menu > li
-{
-    float: left;
-}
-  
-li p
+#menu > a
 {
     display: block;
     color: white;
     text-align: center;
     padding: 14px 16px;
     text-decoration: none;
+    height: 100%;
 }
 
-li p:hover 
+#menu a:hover 
 {
     background-color: #111;
     cursor: pointer;
