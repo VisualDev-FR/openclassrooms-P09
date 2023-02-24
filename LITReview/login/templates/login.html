@@ -1,28 +1,33 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 
 {% load static %}
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+{% block head %}
     <link rel="stylesheet" href="{% static 'css/login.css' %}">
-    <title>LITReview - Connexion</title>
-</head>
-<body>
+{% endblock %}
 
-    <form action="" method="post" novalidate>
-        {% csrf_token %}
-        <fieldset>
-            <legend>Connectez-vous :</legend>
-            {{ form.as_p }}
-            <br><input type="submit" value="Se connecter">
-        </fieldset>    
-    </form>    
+{% block content %}
+    
+<form action="" method="post" class="login-form">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Connectez-vous :</legend>
+
+        {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field }} <br><br>
+
+            {% for error in field.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}            
+        </div>
+        {% endfor %}
+
+        <input type="submit" value="Se connecter">
+    </fieldset>
 
     <p>Inscrivez vous maintenant</p>
-    <a href="/register"><input type="button" value="S'incrire"></a>
-    
-</body>
-</html>
+    <a href="/register"><input type="button" value="S'incrire"></a>            
+</form>
+
+{% endblock %}

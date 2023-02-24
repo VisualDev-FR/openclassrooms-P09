@@ -3,3 +3,35 @@ body
     background-color: black;
     color: aliceblue;
 }
+
+.login-form{
+    margin-top: 10%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    width: 250px;
+    text-align: center;
+}
+
+.fieldWrapper{
+    padding-top: 10px;    
+    position: relative;
+    width: 100%;
+
+}
+
+.login-form  input[text]{
+    width: 100%;
+    line-height: 20px;
+}
+
+input::placeholder {
+    text-align: center;
+    line-height: inherit;
+}
+
+.error{
+    font-weight: 200;
+    color: red;
+}

@@ -1,23 +1,24 @@
+{% extends 'login.html' %}
+
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">                                                                                              
-    <title>LITReview - Inscription</title>
-</head>
-<body>
 
-    <form action="" method="post" novalidate>
-        {% csrf_token %}
-        <fieldset>
-            <legend>Inscription:</legend>
-            {{ form.as_p }}
-            <br><input type="submit" value="S'inscrire">
-        </fieldset>    
-    </form>
+{% block content %}
+   
+<form action="" method="post" novalidate  class="login-form">
+    {% csrf_token %}
+    <fieldset>
+        <legend>Inscription:</legend>
+        {% for field in form %}
+        <div class="fieldWrapper">
+            {{ field }} <br><br>
+            
+            {% for error in field.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        </div>
+        {% endfor %}
+        <br><input type="submit" value="S'inscrire">
+    </fieldset>    
+</form>
 
-</body>
-</html>
+{% endblock %}
