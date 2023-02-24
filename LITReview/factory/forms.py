@@ -5,3 +5,6 @@ class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
         exclude = ['user', 'time_created']
+        widgets = {
+            'description': forms.Textarea(attrs={'rows': 10}),
+        }        

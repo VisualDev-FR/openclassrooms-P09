@@ -3,3 +3,9 @@ date estimée 28/04
 * fentre création de ticket
 * fenetre création de critique
 * créer les modèles de ticket + critique
+
+Création de tickets
+* ajout d'un text area pour la description lors de la création d'un ticket
+* debug du post d'un ticket
+* migration des modèles de ticket + review
+* amélioration du front de la page de création de ticket

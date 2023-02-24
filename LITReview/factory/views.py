@@ -10,11 +10,14 @@ def create_ticket(request: HttpRequest):
     
     if request.method == 'POST':
         form: TicketForm = TicketForm(request.POST)
+
+        form.instance.user = request.user
+
         if form.is_valid():
             form.save()
     else:
         form = TicketForm()
-
+    
     return render(request, 'new_ticket.html', {'form': form})
 
 

@@ -8,10 +8,9 @@
 {% endblock %}
 
 {% block content %}
-
     <h1>Créer un ticket</h1>
+    <form method="POST" class="ticket-creation-form">
 
-    <form method="POST">
         {% csrf_token %}
         <fieldset>
             {% for field in form %}
@@ -20,8 +19,9 @@
                 {{ field.label_tag }}<br>
                 {{ field }} <br><br>
             </div>
-        {% endfor %}
-        <input type="submit" value="Envoyer">
+            {% endfor %}
+
+            <input type="submit" value="Créer" id="submit-btn">
         </fieldset>
     </form>
 
