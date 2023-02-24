@@ -1,9 +1,12 @@
+body{
+    margin-bottom: 500px;
+}
+
 h1 {
     text-align: center;
 }
 
-.ticket-creation-form {
-
+.creation-form {
     margin-left: auto;
     margin-right: auto;
     left: 0;
@@ -27,3 +30,11 @@ textarea {
     margin-right: 0;
     margin-left: auto;
 }
+
+/* CSS pour les étoiles de notation */
+#id_rating {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+}
+

@@ -1,8 +1,51 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block head %}
+    {{ block.super }}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/factory.css' %}">
+{% endblock %}
+
 {% block content %}
 
+    <h1>Créer une critique</h1>
 
-    
+    <form method="POST" class="creation-form">
+        {% csrf_token %}
+
+        <fieldset>
+            <legend>Livre / Article</legend>
+            <!-- Template for existing ticket -->
+            {% if existing_ticket is not None %}
+                
+            {{ existing_ticket.description }}
+
+            {% endif %}           
+
+            <!-- Template for ticket creation form -->
+            {% for field in ticket_form %}
+            <div class="fieldWrapper">
+                {{ field.errors }} 
+                {{ field.label_tag }}<br>
+                {{ field }} <br><br>
+            </div>
+            {% endfor %}
+        </fieldset><br>
+
+        <fieldset>
+            <legend>Critique</legend>
+            <!-- template for review creation form -->
+            {% for field in review_form %}
+            <div class="fieldWrapper">
+                {{ field.errors }} 
+                {{ field.label_tag }}<br>
+                {{ field }} <br><br>
+            </div>
+            {% endfor %}
+
+            <input type="submit" value="Envoyer" id="submit-btn">
+        </fieldset>
+    </form>
 
 {% endblock %}

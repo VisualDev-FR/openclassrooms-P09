@@ -4,12 +4,13 @@
 
 {% block head %}
     {{ block.super }}
-    <link rel="stylesheet" type="text/css" href="{% static 'css/new_ticket.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/factory.css' %}">
 {% endblock %}
 
 {% block content %}
+
     <h1>Créer un ticket</h1>
-    <form method="POST" class="ticket-creation-form">
+    <form method="POST" class="creation-form">
 
         {% csrf_token %}
         <fieldset>
@@ -21,7 +22,7 @@
             </div>
             {% endfor %}
 
-            <input type="submit" value="Créer" id="submit-btn">
+            <input type="submit" value="Envoyer" id="submit-btn">
         </fieldset>
     </form>
 
