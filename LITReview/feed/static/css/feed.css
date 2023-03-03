@@ -1,76 +1,9 @@
-body
-{
-    background-color: #111;
-    margin-top: 150px;
-    color: aliceblue;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-#menu
-{
-    position: fixed;
-    width: 100%;
-    list-style-type: none;
-    color: white;
-    background-color: #333;
-    top: 0;
-    left: 0;
-    margin: 0;
-    display: flex;
-    align-items: center;
-    padding-right: 100px;
-    justify-content: flex-end;
-    min-height: 80px;
-}
-
-#menu .main-logo{
-    position: absolute;
-    margin-left: 20px;
-    left: 0;
-    width: fit-content;
-    max-height: 60px;
-}
-
-#menu > h1 {
-    position: absolute;
-    margin-left: auto;
-    margin-right: auto;
-    left: 0;
-    right: 0;
-    width: fit-content;
-}
-  
-#menu > a
-{
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    margin-right: 20px;
-    text-decoration: none;
-    height: 100%;
-    border-radius: 10px;
-}
-
-
-.nav-btn:hover 
-{
-    background-color: #111;
-    cursor: pointer;
-}
-
-
-#logout-btn:hover{
-    background-color: #b93a3a;
-}
-
-
 #top_buttons
 {
     display: flex;
     flex-direction: row;
     justify-content: center;
-    margin: auto;
+    margin-bottom: 20px;
     gap: 20px;
 
 }
@@ -85,8 +18,7 @@ body
     text-align: center;
     vertical-align: bottom;
     border-radius: 15px;
-    line-height: 50px;
-    
+    line-height: 50px;    
 }
 
 #top_buttons > a:hover
@@ -94,6 +26,13 @@ body
     border-color: aliceblue;
 }
 
-.ticket-img{
-    max-width: 100%;
+.snippet{
+    border: 1px solid #888;
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    margin-bottom: 10px;
 }
+

@@ -8,8 +8,8 @@ class Ticket(models.Model):
     user = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE
     )
-    image = models.ImageField(upload_to='uploads', null=True, blank=True)
-    time_created = models.DateField(auto_now_add=True)
+    image = models.ImageField(upload_to='uploads/', null=True, blank=True)
+    time_created = models.DateTimeField(auto_now_add=True)
 
 
 class Review(models.Model):

@@ -1,12 +1,34 @@
 {% extends 'base.html' %}
 
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/feed.css' %}">
+{% endblock %}
+
 {% block content %}
 
     <div id="top_buttons">
         <a href="{% url 'new_ticket' %}">Demander une critique</a>
         <a href="{% url 'new_review' %}">Créer une critique</a>
     </div>
+   
+    <div class="feed-content">
+        {% for post in posts %}
 
+            {% if post.content_type == 'TICKET' %}
+
+                {% include 'ticket_snippet.html' with ticket=post %}
+
+            {% elif post.content_type == 'REVIEW' %}
+
+                {% include 'review_snippet.html' with review=post ticket=post.ticket %}
+
+            {% endif %}
+
+        {% endfor %} 
+    </div>
+    
 
 {% endblock %}
 
