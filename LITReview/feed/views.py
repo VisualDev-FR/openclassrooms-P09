@@ -2,11 +2,12 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
 from django.contrib.auth import logout
-from factory.models import Ticket, Review
-from itertools import chain
-from django.db.models import CharField, Value, QuerySet
+from django.db.models import CharField, Value
 from django.shortcuts import render
-from django.contrib.auth.models import User
+
+from LITReview.models import Ticket, Review
+
+from itertools import chain
 import typing
 
 @login_required

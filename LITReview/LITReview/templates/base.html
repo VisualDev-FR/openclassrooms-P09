@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,6 +13,7 @@
 
     {% block head %}{% endblock %}
 </head>
+
 <body>
 
     <div id="menu">
@@ -19,7 +21,7 @@
         <img src="{% static 'img/logo_white.png' %}" alt="" class="main-logo">
         <a href="{% url 'feed' %}" class="nav-btn">Flux</a>
         <a href="" class="nav-btn">Posts</a>
-        <a href="" class="nav-btn">Abonnements</a>
+        <a href="{% url 'follows' %}" class="nav-btn">Abonnements</a>
         <a href="{% url 'logout' %}" id="logout-btn">Se déconnecter</a>
     </div>     
 

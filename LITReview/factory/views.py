@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
 
 from factory.forms import TicketForm, ReviewForm
-from factory.models import Ticket
+from LITReview.models import Ticket
 
 @login_required
 def create_ticket(request: HttpRequest):

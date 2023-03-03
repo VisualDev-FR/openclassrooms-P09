@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from django.contrib import auth
 from django.contrib.auth.models import User
 
-from login.forms import LoginForm, RegisterForm
+from LITReview.forms import LoginForm, RegisterForm
 
 def login(request: HttpRequest):
 
