@@ -1,9 +1,11 @@
 date estimée 28/04
 
-
-@ creation du feed
 @ ajout des fonctions de modification de tickets / de review
 @ mise en place de la page des posts
+@ terminer la page d'abonnements
+@ completer les requetes de flux avec abonnements
+@ respect des wireframes sur la page de flux(images tickets + intégrer les relations tickets / review)
+@ remplir la base de donnée avec les livres du P02
 
 * ajout d'un text area pour la description lors de la création d'un ticket
 * debug du post d'un ticket
@@ -12,9 +14,10 @@ date estimée 28/04
 * cosmétique de la barre de navigation
 * cosmétique des pages de login
 * création de critique
-
 * création des review en réponse à un ticket
 * debug upload d'images
 * debug de la sauvegarde du rating
 * ajout des logos dans l'onglet + dans la barre de navigation
+* creation du feed
+
 

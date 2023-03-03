@@ -3,43 +3,47 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static 'css/feed.css' %}">
+    <link rel="stylesheet" href="{% static 'css/follow.css' %}">
 {% endblock %}
 
 {% block content %}
 
     <h1>Suivre d'autres utilisateurs</h1>
 
-    <form method="POST">
+    <form method="POST" class="centered-container follow-form">
 
         {% csrf_token %}
 
-        {% for field in follow_form %}
-            {{ field }} <br><br>
+        <div class="autocomplete">
+            <input id="myInput" type="text" name="myCountry" placeholder="Rechercher un utilisateur...">
+        </div>
 
-            {% for error in field.errors %}
-                <span class="error">{{ error }}</span>
-            {% endfor %}
-        {% endfor %}
-
-        <input type="submit" value="S'abonner">
+        <input type="submit" value="Envoyer">
     </form>
 
     <h1>Abonnements</h1>
 
-        <div>
-            {% for username in followed_users %}
-                <span class="follow">{{ username }}</span>
-            {% endfor %}
-        </div>
+    <table class="user-list centered-container">
+        {% csrf_token %}
+        {% for username in followed_users %}
+        <tr>
+            <td class="username">{{ username }}</td>
+            <td class="unfollow-btn">Désabonner</td>
+        </tr>
+        {% endfor %}
+    </table>    
+
 
     <h1>Abonnés</h1>
 
-    <div>
+    <table class="user-list centered-container">
         {% for username in followers %}
-            <span class="follow">{{ username }}</span>
+        <tr>
+            <td>{{ username }}</td>
+        </tr>            
         {% endfor %}
-    </div>    
-    
+    </table> 
+
+    <script src="{% static 'js/follows.js' %}"></script>
 
 {% endblock %}

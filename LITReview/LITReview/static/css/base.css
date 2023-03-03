@@ -8,6 +8,11 @@ body
     overflow-y: scroll;
 }
 
+.centered-container{
+    margin-right: auto;
+    margin-left: auto;
+}
+
 h1 {
     text-align: center;
 }
@@ -63,9 +68,11 @@ h1 {
 {
     background-color: #111;
     cursor: pointer;
+    transition: 0.5s;
 }
 
 
 #logout-btn:hover{
     background-color: #b93a3a;
+    transition: 0.5s;
 }
