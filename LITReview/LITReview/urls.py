@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from . import views as LITReview
 from feed import views as feed
 from factory import views as factory
+from userfollows import views as follows
 from . import settings
 
 
@@ -31,5 +32,6 @@ urlpatterns = [
     path('new_ticket', factory.create_ticket, name='new_ticket'),
     path('new_review/', factory.create_review, name='new_review'),
     path('new_review/<int:ticket_pk>', factory.create_review, name='new_review'),
+    path('follows/', follows.userfollows, name='follows')
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

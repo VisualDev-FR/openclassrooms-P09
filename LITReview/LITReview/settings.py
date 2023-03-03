@@ -40,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'LITReview',
     'feed',
-    'factory'
+    'factory',
+    'userfollows',
 ]
 
 MIDDLEWARE = [

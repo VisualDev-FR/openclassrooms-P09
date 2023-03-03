@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'css/feed.css' %}">
+{% endblock %}
+
+{% block content %}
+
+    <h1>Suivre d'autres utilisateurs</h1>
+
+    <form method="POST">
+
+        {% csrf_token %}
+
+        {% for field in follow_form %}
+            {{ field }} <br><br>
+
+            {% for error in field.errors %}
+                <span class="error">{{ error }}</span>
+            {% endfor %}
+        {% endfor %}
+
+        <input type="submit" value="S'abonner">
+    </form>
+
+    <h1>Abonnements</h1>
+
+        <div>
+            {% for username in followed_users %}
+                <span class="follow">{{ username }}</span>
+            {% endfor %}
+        </div>
+
+    <h1>Abonnés</h1>
+
+    <div>
+        {% for username in followers %}
+            <span class="follow">{{ username }}</span>
+        {% endfor %}
+    </div>    
+    
+
+{% endblock %}
