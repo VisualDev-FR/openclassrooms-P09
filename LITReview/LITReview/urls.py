@@ -16,7 +16,7 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.conf.urls.static import static
-from login import views as login
+from . import views as LITReview
 from feed import views as feed
 from factory import views as factory
 from . import settings
@@ -24,8 +24,8 @@ from . import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/login/', login.login, name='login'),
-    path('register/', login.register, name='register'),
+    path('accounts/login/', LITReview.login, name='login'),
+    path('register/', LITReview.register, name='register'),
     path('feed/', feed.feed, name='feed'),
     path('logout/', feed.deconection, name='logout'),
     path('new_ticket', factory.create_ticket, name='new_ticket'),

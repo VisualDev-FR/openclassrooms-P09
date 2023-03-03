@@ -1,5 +1,5 @@
 from django import forms
-from factory.models import Ticket, Review
+from LITReview.models import Ticket, Review
 
 class TicketForm(forms.ModelForm):
     class Meta:
