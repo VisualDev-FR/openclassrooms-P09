@@ -10,11 +10,18 @@ from factory.models import Ticket
 def create_ticket(request: HttpRequest):
     
     if request.method == 'POST':
-        form = TicketForm(request.POST)
+        form = TicketForm(request.POST, request.FILES)
+
+        if form.is_valid():            
+            form.instance.user = request.user
+            # form.instance.image.save()
+            form.save()
+            return redirect('feed')
     else:
         form = TicketForm()
     
     return render(request, 'new_ticket.html', {'form': form})
+
 
 @login_required
 def create_review(request: HttpRequest, ticket_pk: int = -1):
@@ -22,7 +29,7 @@ def create_review(request: HttpRequest, ticket_pk: int = -1):
     if request.method == 'POST':
 
         ticket_form = TicketForm(request.POST or None)
-        review_form = ReviewForm(request.POST or None)
+        review_form = ReviewForm(request.POST)
 
         if ticket_form.is_valid() and review_form.is_valid():
             

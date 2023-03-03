@@ -15,9 +15,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
 from login import views as login
 from feed import views as feed
 from factory import views as factory
+from . import settings
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -28,4 +31,5 @@ urlpatterns = [
     path('new_ticket', factory.create_ticket, name='new_ticket'),
     path('new_review/', factory.create_review, name='new_review'),
     path('new_review/<int:ticket_pk>', factory.create_review, name='new_review'),
-]
+    
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -18,9 +18,16 @@
             <legend>Livre / Article</legend>
             <!-- Template for existing ticket -->
             {% if existing_ticket is not None %}
-                
-            {{ existing_ticket.description }}
 
+            <h2>Vous êtes en train de poster en réponse à {{ existing_ticket.user.username }}</h2>
+
+            <p>Titre : {{ existing_ticket.title }}</p>
+
+            <p>Description : {{ existing_ticket.description }}</p>
+            
+                {% if existing_ticket.image.name != "" %}
+                    <img class="ticket-img" src="{{ existing_ticket.image.url }}">
+                {% endif %}    
             {% endif %}           
 
             <!-- Template for ticket creation form -->
