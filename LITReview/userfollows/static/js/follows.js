@@ -1,6 +1,6 @@
 const unfollow_buttons = document.getElementsByClassName('unfollow-btn')
-const csrftoken = getCookie('csrftoken');
 
+// function allowing to get the csrf token, see : https://docs.djangoproject.com/fr/4.0/ref/csrf/#:~:text=Setting%20the%20token%20on%20the%20AJAX%20request%C2%B6
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -26,12 +26,12 @@ for(var i = 0; i < unfollow_buttons.length; i++){
         var username = button.parentElement.querySelector('.username').textContent;
         fetch('/unfollow/' + username, {
             method:'POST',
-            headers: {'X-CSRFToken': csrftoken},
+            headers: {'X-CSRFToken': getCookie('csrftoken')},
             mode: 'same-origin'
         })
         .then(function(){
-            // remove the followed user from the list
-            button.parentElement.remove();
+            // force the page reload to refresh the followed users table
+            location.reload()
         });
     };    
 }
@@ -42,19 +42,28 @@ function autocomplete(inp, arr) {
     /*the autocomplete function takes two arguments,
     the text field element and an array of possible autocompleted values:*/
     var currentFocus;
+
+    inp.addEventListener("click", function(e) {
+        display(this);
+    });
+
     /*execute a function when someone writes in the text field:*/
     inp.addEventListener("input", function(e) {
-        var a, b, i, val = this.value;
+        display(this);
+    });
+
+    function display(element){
+        var a, b, i, val = element.value;
         /*close any already open lists of autocompleted values*/
         closeAllLists();
-        if (!val) { return false;}
+        // if (!val) { return false;}
         currentFocus = -1;
         /*create a DIV element that will contain the items (values):*/
         a = document.createElement("DIV");
-        a.setAttribute("id", this.id + "autocomplete-list");
+        a.setAttribute("id", element.id + "autocomplete-list");
         a.setAttribute("class", "autocomplete-items");
         /*append the DIV element as a child of the autocomplete container:*/
-        this.parentNode.appendChild(a);
+        element.parentNode.appendChild(a);
         /*for each item in the array...*/
         for (i = 0; i < arr.length; i++) {
             /*check if the item starts with the same letters as the text field value:*/
@@ -76,8 +85,8 @@ function autocomplete(inp, arr) {
                 });
                 a.appendChild(b);
             }
-        }
-    });
+        }        
+    }
     /*execute a function presses a key on the keyboard:*/
     inp.addEventListener("keydown", function(e) {
         var x = document.getElementById(this.id + "autocomplete-list");
@@ -101,6 +110,10 @@ function autocomplete(inp, arr) {
                 /*and simulate a click on the "active" item:*/
                 if (x) x[currentFocus].click();
             }
+        } else if (e.keyCode == 27) {
+            /*If the ENTER key is pressed, prevent the form from being submitted,*/
+            e.preventDefault();
+            closeAllLists();
         }
     });
     function addActive(x) {
@@ -135,5 +148,12 @@ function autocomplete(inp, arr) {
     });
 }
 
-var users = ['tonio', 'pauline', 'christphe']
-autocomplete(document.getElementById("myInput"), users);
+fetch('/followable_users/')
+.then((response) => response.json())
+.then((users) => {
+    for(var i = 0; i < users.length; i++){
+        console.log(users[i])
+    }
+    autocomplete(document.getElementById("myInput"), users);
+});
+

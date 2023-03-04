@@ -10,12 +10,12 @@
 
     <h1>Suivre d'autres utilisateurs</h1>
 
-    <form method="POST" class="centered-container follow-form">
+    <form method="POST" class="centered-container follow-form" autocomplete="off">
 
         {% csrf_token %}
 
         <div class="autocomplete">
-            <input id="myInput" type="text" name="myCountry" placeholder="Rechercher un utilisateur...">
+            <input id="myInput" name="followed_user" type="text" placeholder="Rechercher un utilisateur...">
         </div>
 
         <input type="submit" value="Envoyer">

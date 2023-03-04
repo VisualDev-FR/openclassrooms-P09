@@ -1,15 +1,29 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
-from django.http import HttpRequest, HttpResponse
-from userfollows.forms import FollowForm
+from django.http import HttpRequest, HttpResponse, JsonResponse
 from LITReview.models import UserFollows
 from django.contrib.auth.models import User
 
 
+def get_followable_usernames(request: HttpRequest) -> JsonResponse:
+
+    # create array of all followed users username
+    followed_users = [
+        User.objects.get(pk=follow.followed_user.pk).username 
+        for follow in UserFollows.objects.filter(user=request.user.pk)
+    ]
+
+    # prevent the users to follow themself
+    followed_users.append(request.user.username)
+
+    # request all users who can be followed to database
+    followable_users = [user.username for user in User.objects.exclude(username__in=followed_users)]
+
+    return JsonResponse(followable_users, safe=False)
+
+
 @login_required
 def render_follow_page(request: HttpRequest) -> HttpResponse:
-    # force the reset of the form
-    follow_form = FollowForm()
 
     # update the follows infos
     followed_users = [follow.followed_user.username for follow in UserFollows.objects.filter(user=request.user.pk)]
@@ -20,7 +34,6 @@ def render_follow_page(request: HttpRequest) -> HttpResponse:
         request,
         'follows.html', 
         {
-            'follow_form':follow_form,
             'followed_users':followed_users,
             'followers':followers
         }
@@ -31,13 +44,21 @@ def render_follow_page(request: HttpRequest) -> HttpResponse:
 def follow_user(request: HttpRequest):
 
     if request.method == 'POST':
+        try:
+            followed_username = request.POST.get('followed_user')
+            
+            # prevent the users to follow themself
+            if followed_username != request.user.username: 
+                uf = UserFollows(
+                    user = request.user,
+                    followed_user = User.objects.get(username=followed_username)
+                )
+                uf.save()
 
-        follow_form = FollowForm(request.POST)
+        except:
+            pass
 
-        if follow_form.is_valid():
-            follow_form.instance.user = request.user
-            follow_form.save()
-            return redirect('follows')
+        return redirect('follows')
 
     return render_follow_page(request)
 

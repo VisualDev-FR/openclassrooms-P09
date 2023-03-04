@@ -51,6 +51,7 @@ input[type=text] {
     width: 100%;
 }
 input[type=submit] {
+    cursor: pointer;
     background-color: DodgerBlue;
     color: #fff;
 }

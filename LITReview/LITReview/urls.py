@@ -33,6 +33,7 @@ urlpatterns = [
     path('new_review/', factory.create_review, name='new_review'),
     path('new_review/<int:ticket_pk>', factory.create_review, name='new_review'),
     path('follows/', follows.follow_user, name='follows'),
-    path('unfollow/<str:username>', follows.unfollow_user, name='unfollow')
+    path('unfollow/<str:username>', follows.unfollow_user, name='unfollow'),
+    path('followable_users/', follows.get_followable_usernames, name='followable_users')
     
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
