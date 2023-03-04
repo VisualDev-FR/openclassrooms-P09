@@ -24,9 +24,9 @@
             <p>Titre : {{ existing_ticket.title }}</p>
 
             <p>Description : {{ existing_ticket.description }}</p>
-            
-                {% if existing_ticket.image.name != "" %}
-                    <img class="ticket-img" src="{{ existing_ticket.image.url }}">
+
+                {% if image_url != "" %}
+                    <img class="ticket-img" src="{{ image_url }}">
                 {% endif %}    
             {% endif %}           
 

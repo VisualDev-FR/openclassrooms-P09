@@ -61,12 +61,23 @@ def create_review(request: HttpRequest, ticket_pk: int = -1):
     else:
         ticket_form = TicketForm()
         review_form = ReviewForm()
-    
+
     if ticket_pk > -1:
         existing_ticket = Ticket.objects.get(pk=ticket_pk)
         ticket_form = None
+
+        if existing_ticket.image.name.startswith('http'):
+            image_url = existing_ticket.image.name
+        
+        elif existing_ticket.image.name != "":
+            image_url = existing_ticket.image.url
+        
+        else:
+            image_url = ""
+
     else:
         existing_ticket = None
+        image_url = ""
 
     return render(
         request=request,
@@ -74,6 +85,7 @@ def create_review(request: HttpRequest, ticket_pk: int = -1):
         context= {
             'review_form':review_form,
             'ticket_form':ticket_form,
-            'existing_ticket':existing_ticket
+            'existing_ticket':existing_ticket,
+            'image_url':image_url
         }
     )
