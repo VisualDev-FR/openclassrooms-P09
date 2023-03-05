@@ -1,6 +1,6 @@
 from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
-from LITReview.models import UserFollows, Ticket
+from LITReview.models import UserFollows, Ticket, Review
 # from pprint import pprint
 import os
 import random
@@ -117,9 +117,76 @@ def dummy_tickets():
 
 def dummy_reviews():
     """ generate n random reviews (between MIN_REVIEWS and MAX_REVIEWS) for each user """
-    pass
+
+    dummy_reviews = {
+        0: {
+            "headline": "C'était nul !",
+            "rating": 0,
+            "body": "A fuir ! ce livre est ennuyant au possible !"
+        },
+        1: {
+            "headline": "Pas top...",
+            "rating": 1,
+            "body": "Globalement sans interêt.."
+        },
+        2: {
+            "headline": "Bof...",
+            "rating": 2,
+            "body": "Quel dommage de gacher une histoire si originale..."
+        },
+        3: {
+            "headline": "La fin est décevante",
+            "rating": 3,
+            "body": "La fin aurait mérité d'être mieux travaillée..."
+        },
+        4: {
+            "headline": "Très sympa !",
+            "rating": 4,
+            "body": "Rafraichissant et captivant !"
+        },
+        5: {
+            "headline": "INCROYABLE !",
+            "rating": 5,
+            "body": "Je n'ai jamais été aussi captivé par un livre !"
+        },
+    }
+
+    Review.objects.all().delete()
+
+    users = User.objects.all()
+
+    reviews = []
+
+    for i, user in enumerate(users):
+
+        accessible_tickets = []
+
+        for userfollow in UserFollows.objects.filter(user=user):
+            accessible_tickets.extend(
+                Ticket.objects.filter(
+                    user=userfollow.followed_user
+                )
+            )
+
+        for ticket in random.sample(set(accessible_tickets), random.randrange(MIN_REVIEWS, MAX_REVIEWS)):
+
+            random_review = dummy_reviews[random.randrange(0, 5)]
+
+            reviews.append(
+                Review(
+                    user=user,
+                    ticket=ticket,
+                    rating=random_review['rating'],
+                    headline=random_review['headline'],
+                    body=random_review['body']
+                )
+            )
+
+        progress(i, len(users), "Création des reviews", user.username)
+
+    Review.objects.bulk_create(reviews)
 
 
-dummy_tickets()
+dummy_reviews()
 
 print("\n")
