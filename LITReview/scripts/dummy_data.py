@@ -2,8 +2,10 @@ from django.contrib.auth.models import User
 from django.contrib.auth.hashers import make_password
 from LITReview.models import UserFollows, Ticket, Review
 # from pprint import pprint
+from datetime import datetime, timedelta
 import os
 import random
+import typing
 
 DUMMY_PASSWORD = make_password("dummypassword")
 
@@ -30,6 +32,26 @@ def progress(index: int, count: int, before: str = "", after: str = ""):
         count=count,
         after=after
     ) + " " * 50, end="\r" if index < count - 1 else "\n")
+
+
+def dummy_datetime():
+    return datetime(
+        year=2022,
+        month=random.randrange(1, 12),
+        day=random.randrange(1, 28),
+        hour=random.randrange(0, 23),
+        minute=random.randrange(1, 59),
+        second=random.randrange(1, 59)
+    )
+
+
+def dummy_timedelta():
+    return timedelta(
+        days=random.randrange(0, 10),
+        hours=random.randrange(0, 23),
+        minutes=random.randrange(0, 59),
+        seconds=random.randrange(0, 59)
+    )
 
 
 def dummy_users():
@@ -105,7 +127,7 @@ def dummy_tickets():
                 user=user,
                 title=title,
                 description=description,
-                image=image_url
+                image=image_url,
             )
 
             tickets.append(ticket)
@@ -113,6 +135,16 @@ def dummy_tickets():
         progress(i, len(users), "Création des tickets : ", user.username)
 
     Ticket.objects.bulk_create(tickets)
+
+
+def dummy_date_ticket():
+
+    tickets = Ticket.objects.all()
+
+    for i, ticket in enumerate(tickets):
+        ticket.time_created = dummy_datetime()
+        ticket.save()
+        progress(i, len(tickets), "Mise à jour de la date des tickets : ")
 
 
 def dummy_reviews():
@@ -159,7 +191,7 @@ def dummy_reviews():
 
     for i, user in enumerate(users):
 
-        accessible_tickets = []
+        accessible_tickets: typing.List[Ticket] = []
 
         for userfollow in UserFollows.objects.filter(user=user):
             accessible_tickets.extend(
@@ -178,7 +210,7 @@ def dummy_reviews():
                     ticket=ticket,
                     rating=random_review['rating'],
                     headline=random_review['headline'],
-                    body=random_review['body']
+                    body=random_review['body'],
                 )
             )
 
@@ -186,7 +218,23 @@ def dummy_reviews():
 
     Review.objects.bulk_create(reviews)
 
+    # time_created=ticket.time_created + dummy_timedelta()
 
+
+def dummy_date_reviews():
+
+    reviews = Review.objects.all()
+
+    for i, review in enumerate(reviews):
+        review.time_created = review.ticket.time_created + dummy_timedelta()
+        review.save()
+        progress(i, len(reviews), "Mise à jour de la date des reviews : ")
+
+
+dummy_tickets()
+dummy_date_ticket()
 dummy_reviews()
+dummy_date_reviews()
+
 
 print("\n")
