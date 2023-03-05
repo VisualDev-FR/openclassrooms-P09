@@ -16,8 +16,13 @@ MAX_FOLLOWS = 10
 MIN_TICKETS = 3
 MAX_TICKETS = 10
 
+MIN_REVIEWS = 1
+MAX_REVIEWS = 5
+
 
 def progress(index: int, count: int, before: str = "", after: str = ""):
+    """ show basic progress bar in terminal """
+
     print("{before} {progress}% ({index}/{count}) {after}".format(
         before=before,
         progress=int(100 * (index + 1) / count),
@@ -28,6 +33,7 @@ def progress(index: int, count: int, before: str = "", after: str = ""):
 
 
 def dummy_users():
+    """ generate all users registered in dummy_users.txt """
 
     # delete all existing users
     User.objects.all().delete()
@@ -49,7 +55,7 @@ def dummy_users():
 
 
 def dummy_follows():
-
+    """ generate n randoms follows (between MIN_FOLLOWS and MAX_FOLLOWS) for each users """
     # delete follows database
     UserFollows.objects.all().delete()
 
@@ -73,34 +79,45 @@ def dummy_follows():
 
 
 def dummy_tickets():
+    """ generate n randoms tickets (between MIN_TICKETS and MAX_TICKETS) for each registered users """
 
     Ticket.objects.all().delete()
 
-    user = User.objects.get(username="Thomas")
-    books = open(DUMMY_BOOKS_FILE, "r", encoding='utf-8').readlines()
+    users = User.objects.all()
+    dummy_books = open(DUMMY_BOOKS_FILE, "r", encoding='utf-8').readlines()
 
     tickets = []
 
-    for i, line in enumerate(books):
+    for i, user in enumerate(users):
 
-        line_array = line.split(";")
+        books = [
+            str(line).split(";")
+            for line in random.sample(set(dummy_books), random.randrange(MIN_TICKETS, MAX_TICKETS))
+        ]
 
-        title = line_array[2].strip()
-        description = line_array[6].strip()
-        image_url = line_array[9].strip()
+        for book in books:
 
-        ticket = Ticket(
-            user=user,
-            title=title,
-            description=description,
-            image=image_url
-        )
+            title = book[2].strip()
+            description = book[6].strip()
+            image_url = book[9].strip()
 
-        tickets.append(ticket)
+            ticket = Ticket(
+                user=user,
+                title=title,
+                description=description,
+                image=image_url
+            )
 
-        progress(i, len(books), "Création des tickets : ")
+            tickets.append(ticket)
+
+        progress(i, len(users), "Création des tickets : ", user.username)
 
     Ticket.objects.bulk_create(tickets)
+
+
+def dummy_reviews():
+    """ generate n random reviews (between MIN_REVIEWS and MAX_REVIEWS) for each user """
+    pass
 
 
 dummy_tickets()
