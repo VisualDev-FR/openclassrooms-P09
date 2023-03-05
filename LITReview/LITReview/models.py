@@ -12,6 +12,15 @@ class Ticket(models.Model):
     image = models.ImageField(upload_to='uploads/', null=True, blank=True)
     time_created = models.DateTimeField(auto_now_add=True)
 
+    def get_image_url(self) -> str:
+
+        if self.image.name.startswith('http'):
+            return self.image.name
+        elif self.image.name != "":
+            return self.image.url
+        else:
+            return ""
+
 
 class Review(models.Model):
     headline = models.CharField(max_length=128)
