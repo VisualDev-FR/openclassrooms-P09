@@ -31,7 +31,9 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('headline', models.CharField(max_length=128)),
-                ('rating', models.PositiveSmallIntegerField(validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(5)])),
+                ('rating', models.PositiveSmallIntegerField(validators=[
+                    django.core.validators.MinValueValidator(0),
+                    django.core.validators.MaxValueValidator(5)])),
                 ('body', models.CharField(blank=True, max_length=8192)),
                 ('time_created', models.DateTimeField(auto_now_add=True)),
                 ('ticket', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='LITReview.ticket')),
@@ -42,8 +44,17 @@ class Migration(migrations.Migration):
             name='UserFollows',
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('followed_user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='followed_by', to=settings.AUTH_USER_MODEL)),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='following', to=settings.AUTH_USER_MODEL)),
+                (
+                    'followed_user',
+                    models.ForeignKey(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name='followed_by',
+                        to=settings.AUTH_USER_MODEL)
+                ),
+                ('user', models.ForeignKey(
+                    on_delete=django.db.models.deletion.CASCADE,
+                    related_name='following',
+                    to=settings.AUTH_USER_MODEL)),
             ],
             options={
                 'unique_together': {('user', 'followed_user')},

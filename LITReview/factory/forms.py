@@ -1,6 +1,7 @@
 from django import forms
 from LITReview.models import Ticket, Review
 
+
 class TicketForm(forms.ModelForm):
     class Meta:
         model = Ticket
@@ -9,20 +10,21 @@ class TicketForm(forms.ModelForm):
             'description': forms.Textarea(attrs={'rows': 10}),
         }
 
+
 class ReviewForm(forms.ModelForm):
 
-    headline = forms.CharField(label='Titre')    
+    headline = forms.CharField(label='Titre')
     rating = forms.ChoiceField(
         label='Note',
-        widget=forms.RadioSelect(attrs={'class':'rate'}),
+        widget=forms.RadioSelect(attrs={'class': 'rate'}),
         initial=0,
         choices=[
-            (0, 0),
-            (1, 1),
-            (2, 2),
-            (3, 3),
-            (4, 4),
-            (5, 5)
+            (0, "0"),
+            (1, "1"),
+            (2, "2"),
+            (3, "3"),
+            (4, "4"),
+            (5, "5")
         ]
     )
 

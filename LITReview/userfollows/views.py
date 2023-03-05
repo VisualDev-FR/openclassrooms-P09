@@ -9,12 +9,12 @@ def get_followable_usernames(request: HttpRequest) -> JsonResponse:
 
     # create array of all followed users username
     followed_users = [
-        User.objects.get(pk=follow.followed_user.pk).username 
+        User.objects.get(pk=follow.followed_user.pk).username
         for follow in UserFollows.objects.filter(user=request.user.pk)
     ]
 
     # prevent the users to follow themself
-    followed_users.append(request.user.username)
+    followed_users.append(request.user.username)  # type: ignore
 
     # request all users who can be followed to database
     followable_users = [user.username for user in User.objects.exclude(username__in=followed_users)]
@@ -32,10 +32,10 @@ def render_follow_page(request: HttpRequest) -> HttpResponse:
     # render the follow page
     return render(
         request,
-        'follows.html', 
+        'follows.html',
         {
-            'followed_users':followed_users,
-            'followers':followers
+            'followed_users': followed_users,
+            'followers': followers
         }
     )
 
@@ -45,17 +45,18 @@ def follow_user(request: HttpRequest):
 
     if request.method == 'POST':
         try:
+
             followed_username = request.POST.get('followed_user')
-            
+
             # prevent the users to follow themself
-            if followed_username != request.user.username: 
+            if followed_username != request.user.username:  # type: ignore
                 uf = UserFollows(
-                    user = request.user,
-                    followed_user = User.objects.get(username=followed_username)
+                    user=request.user,
+                    followed_user=User.objects.get(username=followed_username)
                 )
                 uf.save()
 
-        except:
+        except Exception:
             pass
 
         return redirect('follows')
@@ -72,5 +73,5 @@ def unfollow_user(request: HttpRequest, username: str):
         user_follow.delete()
 
         return redirect('follows')
-    
+
     return render_follow_page(request)

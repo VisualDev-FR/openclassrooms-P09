@@ -1,19 +1,18 @@
-from django.http import HttpResponse, HttpRequest
+from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.contrib import auth
-from django.contrib.auth.models import User
-
 from LITReview.forms import LoginForm, RegisterForm
+
 
 def login(request: HttpRequest):
 
     if request.method == 'POST':
         # parse received username and password
-        form = LoginForm(request.POST)        
+        form = LoginForm(request.POST)
         username: str = request.POST['username']
         password: str = request.POST['password']
 
-        user: User = auth.authenticate(username=username, password=password)
+        user = auth.authenticate(username=username, password=password)
 
         if user is not None:
             # A backend authenticated the credentials
@@ -23,12 +22,12 @@ def login(request: HttpRequest):
     else:
         form = LoginForm()
 
-    return render(request, 'login.html', {'form':form})
+    return render(request, 'login.html', {'form': form})
 
 
 def register(request: HttpRequest):
 
-    form = RegisterForm()    
+    form = RegisterForm()
 
     if request.method == 'POST':
         form = RegisterForm(data=request.POST)
@@ -36,7 +35,4 @@ def register(request: HttpRequest):
             form.save()
             return redirect('login')
 
-
-    return render(request, 'register.html', {'form':form})
-
-    
+    return render(request, 'register.html', {'form': form})

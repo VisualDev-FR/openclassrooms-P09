@@ -68,7 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-           ],
+            ],
         },
     },
 ]
@@ -128,5 +128,5 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_ROOT = os.path.join(BASE_DIR, 'media')  #os.path.join(str(BASE_DIR).replace("\\", "/"), "media/")
-MEDIA_URL  = "/media/" #os.path.join(str(BASE_DIR).replace("\\", "/"), "media/")
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = "/media/"

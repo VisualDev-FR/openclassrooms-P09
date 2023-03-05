@@ -18,7 +18,7 @@
 
     <div id="menu">
         <h1>LITReview</h1>
-        <img src="{% static 'img/logo_white.png' %}" alt="" class="main-logo">
+        <a href="{% url 'feed' %}"><img src="{% static 'img/logo_white.png' %}" alt="" class="main-logo"></a>
         <a href="{% url 'feed' %}" class="nav-btn">Flux</a>
         <a href="" class="nav-btn">Posts</a>
         <a href="{% url 'follows' %}" class="nav-btn">Abonnements</a>
