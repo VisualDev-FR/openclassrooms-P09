@@ -34,6 +34,22 @@ def get_users_viewable_tickets(request: HttpRequest):
     return viewable_tickets.annotate(content_type=Value('TICKET', CharField()))
 
 
+def get_currentUser_reviews(request: HttpRequest):
+    return Review.objects.filter(user=request.user).annotate(content_type=Value('REVIEW', CharField()))
+
+
+def get_currentUser_tickets(request: HttpRequest):
+    return Ticket.objects.filter(user=request.user).annotate(content_type=Value('TICKET', CharField()))
+
+
+def get_posts(reviews, tickets):
+    return sorted(
+        chain(reviews, tickets),
+        key=lambda post: post.time_created,
+        reverse=True
+    )
+
+
 @login_required
 def feed(request: HttpRequest):
 
@@ -43,11 +59,13 @@ def feed(request: HttpRequest):
     # returns annotated queryset of tickets
     tickets = set(get_users_viewable_tickets(request))
 
-    # combine and sort the two types of posts
-    posts = sorted(
-        chain(reviews, tickets),
-        key=lambda post: post.time_created,
-        reverse=True
-    )
+    return render(request, 'feed.html', context={'posts': get_posts(reviews, tickets)})
 
-    return render(request, 'feed.html', context={'posts': posts})
+
+@login_required
+def posts(request: HttpRequest):
+
+    reviews = get_currentUser_reviews(request)
+    tickets = get_currentUser_tickets(request)
+
+    return render(request, 'post.html', context={'posts': get_posts(reviews, tickets)})

@@ -9,7 +9,8 @@
 
 {% block content %}
 
-    <h1>Créer un ticket</h1>
+    <h1>{{ title }} </h1>
+
     <form method="POST" class="creation-form" enctype="multipart/form-data">
 
         {% csrf_token %}
@@ -21,6 +22,10 @@
                 {{ field }} <br><br>
             </div>
             {% endfor %}
+
+            {% if ticket.get_image_url != "" %}
+                <img class="ticket-img" src="{{ ticket.get_image_url }}">
+            {% endif %}             
 
             <input type="submit" value="Envoyer" id="submit-btn">
         </fieldset>

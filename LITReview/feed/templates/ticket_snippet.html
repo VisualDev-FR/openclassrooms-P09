@@ -1,4 +1,4 @@
-<div class="snippet ticket-snippet">
+<div class="snippet ticket-snippet" id="{{ ticket.pk }}">
     <p class="ticket-date">Le {{ ticket.time_created }}</p>
     {% if ticket.get_image_url != "" %}
         <img class="ticket-img" src="{{ ticket.get_image_url }}">
@@ -6,4 +6,9 @@
     <p class="ticket-author">{{ ticket.user.username }} a demandé une critique</p>
     <h2>{{ ticket.title }}</h2>
     <p>{{ ticket.description }}</p>
+
+    {% if is_editable %}
+        <input class="edit-button" type="button" value="Modifier">
+        <input class="delete-button" type="button" value="Supprimer">
+    {% endif %}
 </div>

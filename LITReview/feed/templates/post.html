@@ -1,0 +1,25 @@
+{% extends 'feed.html' %}
+
+{% load static %}
+
+{% block content %}
+
+    <div class="feed-content">
+        {% for post in posts %}
+
+            {% if post.content_type == 'TICKET' %}
+
+                {% include 'ticket_snippet.html' with ticket=post is_editable=True %}
+
+            {% elif post.content_type == 'REVIEW' %}
+
+                {% include 'review_snippet.html' with review=post ticket=post.ticket is_editable=True %}
+
+            {% endif %}
+
+        {% endfor %} 
+    </div>
+    
+    <script src="{% static 'js/posts.js' %}"></script>
+
+{% endblock %}
