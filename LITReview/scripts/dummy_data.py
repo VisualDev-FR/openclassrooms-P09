@@ -37,7 +37,7 @@ def progress(index: int, count: int, before: str = "", after: str = ""):
 def dummy_datetime():
     return datetime(
         year=2022,
-        month=random.randrange(1, 12),
+        month=random.randrange(1, 13),
         day=random.randrange(1, 28),
         hour=random.randrange(0, 23),
         minute=random.randrange(1, 59),
@@ -89,7 +89,7 @@ def dummy_follows():
 
     for i, user in enumerate(users):
 
-        for followed_user in random.sample(set(users), random.randrange(MIN_FOLLOWS, MAX_FOLLOWS)):
+        for followed_user in random.sample(set(users), random.randrange(MIN_FOLLOWS, MAX_FOLLOWS)):  # type: ignore
             user_follows.append(UserFollows(
                 user=user,
                 followed_user=followed_user
@@ -114,7 +114,7 @@ def dummy_tickets():
 
         books = [
             str(line).split(";")
-            for line in random.sample(set(dummy_books), random.randrange(MIN_TICKETS, MAX_TICKETS))
+            for line in random.sample(set(dummy_books), random.randrange(MIN_TICKETS, MAX_TICKETS))  # type: ignore
         ]
 
         for book in books:
@@ -200,7 +200,7 @@ def dummy_reviews():
                 )
             )
 
-        for ticket in random.sample(set(accessible_tickets), random.randrange(MIN_REVIEWS, MAX_REVIEWS)):
+        for ticket in random.sample(set(accessible_tickets), random.randrange(MIN_REVIEWS, MAX_REVIEWS)):  # type: ignore
 
             random_review = dummy_reviews[random.randrange(0, 5)]
 
