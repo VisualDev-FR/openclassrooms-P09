@@ -5,6 +5,7 @@ from django.db.models import CharField, Value
 from LITReview.models import Ticket, Review, UserFollows
 from django.contrib.auth.models import User
 from itertools import chain
+from django.db.models import Q
 import typing
 
 
@@ -21,7 +22,7 @@ def get_viewable_users(user: User) -> typing.List[User]:
 def get_users_viewable_reviews(request: HttpRequest):
 
     viewable_users = get_viewable_users(request.user)   # type: ignore
-    viewable_reviews = Review.objects.filter(user__in=viewable_users)
+    viewable_reviews = Review.objects.filter(Q(user__in=viewable_users) | Q(ticket__user=request.user))
 
     return viewable_reviews.annotate(content_type=Value('REVIEW', CharField()))
 
@@ -59,7 +60,10 @@ def feed(request: HttpRequest):
     # returns annotated queryset of tickets
     tickets = set(get_users_viewable_tickets(request))
 
-    return render(request, 'feed.html', context={'posts': get_posts(reviews, tickets)})
+    for ticket in tickets:
+        ticket.is_reviewable = not Review.objects.filter(ticket=ticket, user=request.user).exists()  # type: ignore
+
+    return render(request, 'feed.html', context={'posts': get_posts(reviews, tickets), 'user': request.user})
 
 
 @login_required

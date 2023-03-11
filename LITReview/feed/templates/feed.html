@@ -12,13 +12,13 @@
         <a href="{% url 'new_ticket' %}">Demander une critique</a>
         <a href="{% url 'new_review' %}">Créer une critique</a>
     </div>
-   
+
     <div class="feed-content">
         {% for post in posts %}
 
             {% if post.content_type == 'TICKET' %}
 
-                {% include 'ticket_snippet.html' with ticket=post %}
+                {% include 'ticket_snippet.html' with ticket=post is_reviewable=True %}
 
             {% elif post.content_type == 'REVIEW' %}
 
@@ -29,5 +29,6 @@
         {% endfor %} 
     </div>
     
+    <script src="{% static 'js/feed.js' %}"></script>
 
 {% endblock %}

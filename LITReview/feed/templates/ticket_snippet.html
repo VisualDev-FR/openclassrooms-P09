@@ -13,4 +13,8 @@
         <input class="snippet-button edit-button" type="button" value="Modifier">
         <input class="snippet-button delete-button" type="button" value="Supprimer">
     {% endif %}
+
+    {% if ticket.is_reviewable %}
+        <input class="snippet-button review-button" type="button" value="Créer une critique">
+    {% endif %}
 </div>

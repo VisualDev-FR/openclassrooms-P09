@@ -4,6 +4,8 @@ from django.db import models
 
 
 class Ticket(models.Model):
+
+    is_reviewable = False
     title = models.CharField(max_length=128)
     description = models.CharField(max_length=2048, blank=True)
     user = models.ForeignKey(
