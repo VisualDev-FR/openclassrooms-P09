@@ -1,6 +1,8 @@
 from django.http import HttpRequest
 from django.shortcuts import render, redirect
 from django.contrib import auth
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
 from LITReview.forms import LoginForm, RegisterForm
 
 
@@ -36,3 +38,9 @@ def register(request: HttpRequest):
             return redirect('login')
 
     return render(request, 'register.html', {'form': form})
+
+
+@login_required
+def deconection(request: HttpRequest):
+    logout(request)
+    return redirect('login')

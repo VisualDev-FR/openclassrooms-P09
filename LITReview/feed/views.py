@@ -1,7 +1,6 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.http import HttpRequest
-from django.contrib.auth import logout
 from django.db.models import CharField, Value
 from LITReview.models import Ticket, Review, UserFollows
 from django.contrib.auth.models import User
@@ -52,9 +51,3 @@ def feed(request: HttpRequest):
     )
 
     return render(request, 'feed.html', context={'posts': posts})
-
-
-@login_required
-def deconection(request: HttpRequest):
-    logout(request)
-    return redirect('login')
