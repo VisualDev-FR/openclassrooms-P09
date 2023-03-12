@@ -16,20 +16,25 @@
     <form method="POST" class="creation-form">
         {% csrf_token %}
 
-        <fieldset>
+        <fieldset >
             <legend>Livre / Article</legend>
             <!-- Template for existing ticket -->
             {% if existing_ticket is not None %}
 
-            <h2>Vous êtes en train de poster en réponse à {{ existing_ticket.user.username }}</h2>
+                <div class="ticket-snippet">
+                    <h2>Vous êtes en train de poster en réponse à {{ existing_ticket.user.username }}</h2>
+                
+                    <h3>Titre :</h3>
+                    <p class="ticket-title">{{ existing_ticket.title }}</p>
+        
+                    <h3>Description :</h3>
+                    <p class="ticket-description">{{ existing_ticket.description }}</p>
+        
+                    {% if existing_ticket.get_image_url != "" %}
+                        <img class="ticket-img" src="{{ existing_ticket.get_image_url }}">
+                    {% endif %}
+                </div>
 
-            <p>Titre : {{ existing_ticket.title }}</p>
-
-            <p>Description : {{ existing_ticket.description }}</p>
-
-                {% if existing_ticket.get_image_url != "" %}
-                    <img class="ticket-img" src="{{ existing_ticket.get_image_url }}">
-                {% endif %}    
             {% endif %}           
 
             <!-- Template for ticket creation form -->

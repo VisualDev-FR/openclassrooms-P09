@@ -27,10 +27,44 @@ textarea {
     margin-left: auto;
 }
 
+fieldset{
+    border-radius: 10px;
+}
+
 /* CSS pour les étoiles de notation */
 #id_rating {
     display: flex;
     flex-direction: row;
     gap: 30px;
+}
+
+.ticket-snippet{
+    display: grid;
+    grid-template-columns: 1fr auto;
+}
+
+.ticket-snippet .ticket-img{
+    grid-row: 1 / span 5;
+    grid-column: 1 / 1;
+    width: 250px;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.ticket-snippet h2{
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ticket-snippet h3{
+    height: 30px;
+    margin-top: 20px;
+    margin-bottom: 0;
+}
+
+.ticket-snippet .ticket-title,
+.ticket-snippet .ticket-description{
+    margin-top: 0;
+    margin-bottom: 0;
 }
 
