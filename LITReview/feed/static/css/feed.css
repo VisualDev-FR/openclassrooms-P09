@@ -29,6 +29,7 @@
 .snippet{
     display: grid;
     border: 1px solid #888;
+    border-radius: 20px;
     width: 60%;
     margin-left: auto;
     margin-right: auto;
@@ -62,6 +63,7 @@
     width: 250px;
     margin-left: 10px;
     margin-bottom: 10px;
+    border-radius: 10px;
 }
 
 .ticket-snippet .ticket-title{
@@ -169,4 +171,8 @@
 .review-snippet .delete-button{
     grid-row: 6 / 6;
     grid-column: 3 / span 1;
+}
+
+.fa-star.checked{
+    color: orange;
 }

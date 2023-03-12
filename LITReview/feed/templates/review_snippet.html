@@ -2,7 +2,10 @@
     
     <p class="review-date">Le {{ review.time_created }}</p>
     <p class="review-author">{{ review.user.username }} a publié une critique</p>
-    <h2 class="review-title">{{ review.headline }} - <span class="review-rating">{{ review.rating }}</span></h2>
+    <h2 class="review-title">
+        {{ review.headline }} -
+        {% include 'rating.html' with rating=review.rating %}
+    </h2>
     <p class="review-description">{{ review.body }}</p>
 
     {% include 'ticket_snippet.html' with ticket=review.ticket is_editable=False %}
