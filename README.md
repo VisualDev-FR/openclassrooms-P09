@@ -14,25 +14,24 @@ Une base de donnée ```db.sqlite3``` est incluse au dépôt et contient des donn
 
 Le programme utilise plusieurs librairies externes, et modules de Python, qui sont repertoriés dans le fichier ```requirements.txt```
 
-Pour configuer l'environnement, commencez par ouvrir un terminal à la racine du projet.
+Pour configuer l'environnement, commencez par ouvrir un terminal à la racine du projet, et suivez les étapes suivantes :
 
-Créez un environnement virtuel à partir de la commande suivante : 
+1. Créez un environnement virtuel à partir de la commande suivante : 
 ```bash
 python -m venv env
 ```
-Installez les packages python spécifiés dans le fichier ```requirement.txt``` :
 
-```bash
-pip install -r requirement.txt
-```
-
-activez l'environnement virtuel que vous venez de créer avec la commande suivante :
+2. Activez l'environnement virtuel que vous venez de créer avec la commande suivante :
 
 ```bash
 env/Scripts/activate
 ```
 
+3. Installez les packages python spécifiés dans le fichier ```requirement.txt``` :
 
+```bash
+pip install -r requirement.txt
+```
 ### Démarrage 
 
 Sur windows, lancer le script ```runserver.bat``` et passez directement à l'étape 4, sinon suivez les étapes suivantes :
