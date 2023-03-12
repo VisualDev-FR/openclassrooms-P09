@@ -34,31 +34,30 @@
     margin-right: auto;
     left: 0;
     right: 0;
-    margin-bottom: 10px;
+    margin-bottom: 50px;
 }
-
 
 /* REVIEW SNIPPETS STYLE */
 .ticket-snippet{
-    grid-template-columns: auto auto 160px 160px;
+    grid-template-columns: 1fr 1000fr 160px 160px;
+    grid-template-rows: auto auto 1fr auto;
 }
 
 .ticket-snippet .ticket-date{
     grid-row: 1 / 1;
     grid-column: 1 / span 4;    
-    margin-left:10px;
+    margin-right:10px;
+    text-align: right;
 }
 
 .ticket-snippet .ticket-author{
     grid-row: 1 / 1;
     grid-column: 1 / span 4;
-    text-align: right;
-    padding-right: 20px;
+    margin-left: 10px;
 }
 
 .ticket-snippet .ticket-img{
-    align-self: flex-start;
-    grid-row: 2 / span 2;
+    grid-row: 2 / span 3;
     grid-column: 1 / 1;
     width: 250px;
     margin-left: 10px;
@@ -84,14 +83,15 @@
 .snippet-button{
     height: 40px;
     width: 150px;
-    margin-bottom: 10px;
     margin-right: 10px;
+    margin-bottom: 10px;
     background-color: #333;
     color: white;
     border-radius: 10px;
     border:1px solid black;
     font-size: medium;
-    font-family: Arial, Helvetica, sans-serif;    
+    font-family: Arial, Helvetica, sans-serif; 
+    
 }
 
 .snippet-button:hover{
@@ -130,14 +130,14 @@
 .review-snippet .review-date{
     grid-row: 1 / 1;
     grid-column: 1 / span 3;    
-    margin-left:10px;
+    margin-right:10px;
+    text-align: right;
 }
 
 .review-snippet .review-author{
     grid-row: 1 / 1;
     grid-column: 1 / span 3;
-    text-align: right;
-    padding-right: 20px;
+    margin-left: 10px;
 }
 
 .review-snippet .review-title{
