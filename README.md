@@ -8,9 +8,13 @@ L’application présente deux cas d’utilisation principaux :
 1. Les personnes qui demandent des critiques sur un livre ou sur un article particulier ;
 2. Les personnes qui recherchent des articles et des livres intéressants à lire, en se basant sur les critiques des autres.
 
-Une base de donnée ```db.sqlite3``` est incluse au dépôt et contient des données générées aléatoirement pour 
+Une base de donnée ```db.sqlite3``` est incluse au dépôt et contient des données générées aléatoirement tels que :
 
-### Configuration de l'environnement virtuel :
+- un ensemble d'utilisateurs (mot de passe par défaut : dummypassword)
+- un ensemble d'abonnements entre les utilisateurs
+- un ensemble de tickets et de critiques pour chaque utilisateurs
+
+## Configuration de l'environnement virtuel :
 
 Le programme utilise plusieurs librairies externes, et modules de Python, qui sont repertoriés dans le fichier ```requirements.txt```
 
@@ -32,7 +36,7 @@ env/Scripts/activate
 ```bash
 pip install -r requirement.txt
 ```
-### Démarrage 
+## Démarrage 
 
 Sur windows, lancer le script ```runserver.bat``` et passez directement à l'étape 4, sinon suivez les étapes suivantes :
 
@@ -52,7 +56,7 @@ python ./LITReview/manage.py runserver
 
 Pour vous connecter avec un compte existant en base de donnée, choisissez un identifiant dans le fichier suivant : ``` /LITReview/scripts/dummy_usernames.txt ```, et connectez vous avec le mot de passe par défaut : ```dummypassword```
 
-### Rapport flake8
+## Rapport flake8
 
 Le dépôt contient un rapport flake8, qui n'affiche aucune violation des règles PEP8. 
 
@@ -66,7 +70,14 @@ Le fichier ```setup.cfg``` à la racine contient les paramètres concernant la g
 
 Le rapport se trouve dans le repertoire ```flake-report```
 
-### Génération de données
+## Génération de données
+
+Le script ```dummy_data.py``` permet de générer des données aléatoires, basée sur les données extraites du [projet 2](https://github.com/VisualDev-FR/openclassroom-P02) du parcours de developpeur python OC.
+
+Il contient un ensemble d'instructions qui va :
+
+- Supprimer tous les tickets / les critiques / les abonnements de la base de données
+- Générer un nouvel ensemble de tickets / critiques / abonnements pour chaque utilisateurs
 
 Pour générer un nouvel ensemble de données aléatoires, suivez les étapes suivantes :
 
@@ -79,9 +90,3 @@ Pour générer un nouvel ensemble de données aléatoires, suivez les étapes su
 ```bash
 python -W ignore ./LITReview/manage.py runscript dummy_data
 ```
-
-Le script ```dummy_data.py``` contient un ensemble d'instructions qui va :
-
-1. Supprimer tous les tickets / les critiques / les abonnements de la base de données
-2. Générer un nouvel ensemble de tickets / critiques / abonnements pour chaque utilisateurs
-
