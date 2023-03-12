@@ -40,7 +40,7 @@ fieldset{
 
 .ticket-snippet{
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: 1fr 1000fr;
 }
 
 .ticket-snippet .ticket-img{
@@ -54,17 +54,21 @@ fieldset{
 .ticket-snippet h2{
     margin-top: 0;
     margin-bottom: 0;
+    grid-row: 1 / 1;
+    grid-column: 2 / span 1;    
 }
 
 .ticket-snippet h3{
     height: 30px;
     margin-top: 20px;
     margin-bottom: 0;
+    grid-column: 2 / span 1;
 }
 
 .ticket-snippet .ticket-title,
 .ticket-snippet .ticket-description{
     margin-top: 0;
     margin-bottom: 0;
+    grid-column: 2 / span 1;
 }
 
