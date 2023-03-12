@@ -77,6 +77,7 @@ def create_review(request: HttpRequest, ticket_pk: int = -1):
             'review_form': review_form,
             'ticket_form': ticket_form,
             'existing_ticket': existing_ticket,
+            'title': 'Créer une critique'
         }
     )
 
@@ -135,6 +136,7 @@ def edit_review(request: HttpRequest, review_pk: int):
         context={
             'review_form': review_form,
             'existing_ticket': existing_ticket,
+            'title': 'Modifier votre critique'
         }
     )
 

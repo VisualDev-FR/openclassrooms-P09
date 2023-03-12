@@ -9,9 +9,7 @@
 
 {% block content %}
 
-    {% block title %}
-        <h1>Créer une critique</h1>
-    {% endblock %}    
+    <h1>{{ title }}</h1>    
 
     <form method="POST" class="creation-form">
         {% csrf_token %}

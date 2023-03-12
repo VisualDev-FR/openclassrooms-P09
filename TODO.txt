@@ -28,3 +28,4 @@ date estimée 28/04
 * mettre les étoiles sur le rating dans le flux
 * ajout du bouton de retour vers la page de login, sur la page d'inscription
 * mise en forme le ticket dans le formulaire de création de critique
+* mise à jour des titres sur les pages de création / modification de review
