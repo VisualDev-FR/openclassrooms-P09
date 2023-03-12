@@ -234,6 +234,7 @@ def dummy_date_reviews():
         progress(i, len(reviews), "Mise à jour de la date des reviews : ")
 
 
+dummy_follows()
 dummy_tickets()
 dummy_date_ticket()
 dummy_reviews()
