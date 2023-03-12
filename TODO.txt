@@ -3,7 +3,6 @@ date estimée 28/04
 @ mettre en forme le ticket dans le formulaire de création de critique
 @ mettre en forme la page de modification de tickets
 @ faire apparaitre l'image uploadé à la création d'un ticket
-@ ajouter le bouton de retour vers la page de login, sur la page d'inscription
 @ écrire le fichier readme.md
 
 
@@ -28,4 +27,4 @@ date estimée 28/04
 * inverser l'auteur et la date du snippet
 * debug de l'ajout d'une image à la modification d'un ticket
 * mettre les étoiles sur le rating dans le flux
-
+* ajout du bouton de retour vers la page de login, sur la page d'inscription
