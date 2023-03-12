@@ -6,7 +6,6 @@ date estimée 28/04
 @ faire apparaitre l'image uploadé à la création d'un ticket
 @ ajouter le bouton de retour vers la page de login, sur la page d'inscription
 @ écrire le fichier readme.md
-@ debug de l'ajout d'une image à la modification d'un ticket
 
 
 * ajout d'un text area pour la description lors de la création d'un ticket
@@ -28,3 +27,5 @@ date estimée 28/04
 * mise en place de la page des posts
 * mettre en forme les snippets sans image
 * inverser l'auteur et la date du snippet
+* debug de l'ajout d'une image à la modification d'un ticket
+

@@ -92,7 +92,7 @@ def edit_ticket(request: HttpRequest, ticket_pk: int):
 
     if request.method == 'POST':
 
-        form = TicketForm(request.POST, instance=ticket)
+        form = TicketForm(request.POST, request.FILES, instance=ticket)
 
         if form.is_valid():
             form.save()
