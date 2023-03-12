@@ -2,15 +2,14 @@
     
     <p class="review-date">Le {{ review.time_created }}</p>
     <p class="review-author">{{ review.user.username }} a publié une critique</p>
-    <h2>{{ review.headline }}</h2>
-    <span class="review-rating">{{ review.rating }}</span>
-    <p>{{ review.body }}</p>
+    <h2 class="review-title">{{ review.headline }} - <span class="review-rating">{{ review.rating }}</span></h2>
+    <p class="review-description">{{ review.body }}</p>
 
     {% include 'ticket_snippet.html' with ticket=review.ticket is_editable=False %}
 
     {% if is_editable %}
-        <input class="edit-button" type="button" value="Modifier">
-        <input class="delete-button" type="button" value="Supprimer">
+        <input class="snippet-button edit-button" type="button" value="Modifier">
+        <input class="snippet-button delete-button" type="button" value="Supprimer">
     {% endif %}
 
 </div>

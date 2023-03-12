@@ -200,7 +200,10 @@ def dummy_reviews():
                 )
             )
 
-        for ticket in random.sample(set(accessible_tickets), random.randrange(MIN_REVIEWS, MAX_REVIEWS)):  # type: ignore
+        for ticket in random.sample(
+            set(accessible_tickets),
+            random.randrange(MIN_REVIEWS, MAX_REVIEWS)
+        ):  # type: ignore
 
             random_review = dummy_reviews[random.randrange(0, 5)]
 

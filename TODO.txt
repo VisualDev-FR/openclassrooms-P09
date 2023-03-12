@@ -1,8 +1,12 @@
 date estimée 28/04
 
-@ ajout des fonctions de modification de tickets / de review
-@ mise en place de la page des posts
-@ respect des wireframes sur la page de flux(images tickets + intégrer les relations tickets / review)
+@ mettre les étoiles sur le rating dans le flux
+@ mettre en forme le ticket dans le formulaire de création de critique
+@ mettre en forme la page de modification de tickets
+@ inverser l'auteur et la date du snippet
+@ mettre en forme les snippets sans image
+@ faire apparaitre l'image uploadé à la création d'un ticket
+@ ajouter le bouton de retour vers la page de login, sur la page d'inscription
 
 * ajout d'un text area pour la description lors de la création d'un ticket
 * debug du post d'un ticket
@@ -19,3 +23,5 @@ date estimée 28/04
 * terminer la page d'abonnements
 * completer les requetes de flux avec abonnements
 * remplir la base de donnée avec les livres du P02
+* ajout des fonctions de modification de tickets / de review
+* mise en place de la page des posts

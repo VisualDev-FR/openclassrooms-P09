@@ -10,17 +10,23 @@ for(var i = 0; i < REVIEW_SNIPPETS.length; i++){
     const EDIT_BUTTON = REVIEW_SNIPPETS[i].querySelector(".edit-button")
     const DELETE_BUTTON = REVIEW_SNIPPETS[i].querySelector(".delete-button")
 
-    // edit review button
-    EDIT_BUTTON.onclick = (e) => {
-        location.href = "/edit_review/" + PK
+    try{
+        // edit review button
+        EDIT_BUTTON.onclick = (e) => {
+            location.href = "/edit_review/" + PK
+        }        
     }
+    catch{}
 
-    // delete review button
-    DELETE_BUTTON.onclick = (e) => {
-        if(confirm("Voulez-vous supprimer cette critique ?")){
-            location.href = "/delete_review/" + PK
-        }  
+    try{
+        // delete review button
+        DELETE_BUTTON.onclick = (e) => {
+            if(confirm("Voulez-vous supprimer cette critique ?")){
+                location.href = "/delete_review/" + PK
+            }  
+        }
     }
+    catch{}
 }
 
 
@@ -32,15 +38,21 @@ for(var i = 0; i < TICKET_SNIPPETS.length; i++){
     const EDIT_BUTTON = TICKET_SNIPPETS[i].querySelector(".edit-button")
     const DELETE_BUTTON = TICKET_SNIPPETS[i].querySelector(".delete-button")
 
-    // edit ticket button
-    EDIT_BUTTON.onclick = (e) => {
-        location.href = "/edit_ticket/" + PK
-    }
-
-    // delete ticket button
-    DELETE_BUTTON.onclick = (e) => {
-        if(confirm("Voulez-vous supprimer ce ticket ?")){
-            location.href = "/delete_ticket/" + PK
+    try {
+        // edit ticket button
+        EDIT_BUTTON.onclick = (e) => {
+            location.href = "/edit_ticket/" + PK
         }        
-    }
+    } 
+    catch {}
+
+    try {
+        // delete ticket button
+        DELETE_BUTTON.onclick = (e) => {
+            if(confirm("Voulez-vous supprimer ce ticket ?")){
+                location.href = "/delete_ticket/" + PK
+            }        
+        }        
+    } 
+    catch {}
 }

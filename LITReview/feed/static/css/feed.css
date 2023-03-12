@@ -37,9 +37,21 @@
     margin-bottom: 10px;
 }
 
+
+/* REVIEW SNIPPETS STYLE */
+.ticket-snippet{
+    grid-template-columns: auto auto 160px 160px;
+}
+
+.ticket-snippet .ticket-date{
+    grid-row: 1 / 1;
+    grid-column: 1 / span 4;    
+    margin-left:10px;
+}
+
 .ticket-snippet .ticket-author{
     grid-row: 1 / 1;
-    grid-column: 3 / span 2;
+    grid-column: 1 / span 4;
     text-align: right;
     padding-right: 20px;
 }
@@ -54,7 +66,6 @@
 }
 
 .ticket-snippet .ticket-title{
-    
     grid-row: 2 / 2;
     grid-column: 2 / span 3;
     padding-left: 20px;
@@ -70,8 +81,7 @@
     margin-top: 0;
 }
 
-
-.ticket-snippet .snippet-button{
+.snippet-button{
     height: 40px;
     width: 150px;
     margin-bottom: 10px;
@@ -84,12 +94,12 @@
     font-family: Arial, Helvetica, sans-serif;    
 }
 
-.ticket-snippet .snippet-button:hover{
+.snippet-button:hover{
     border: 1px solid white;
     cursor: pointer;
 }
 
-.ticket-snippet .snippet-button.delete-button:hover{
+.snippet-button.delete-button:hover{
     transition: 0.3s;
     background-color: #b93a3a;
     border: 1px solid white;
@@ -109,4 +119,54 @@
 .ticket-snippet .review-button{
     grid-row: 4 / 4;
     grid-column: 4 / span 1;
+}
+
+
+/* REVIEW SNIPPETS STYLE */
+.review-snippet{
+    grid-template-columns: auto 160px 160px;
+}
+
+.review-snippet .review-date{
+    grid-row: 1 / 1;
+    grid-column: 1 / span 3;    
+    margin-left:10px;
+}
+
+.review-snippet .review-author{
+    grid-row: 1 / 1;
+    grid-column: 1 / span 3;
+    text-align: right;
+    padding-right: 20px;
+}
+
+.review-snippet .review-title{
+    grid-row: 2 / 2;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+}
+
+.review-snippet .review-description{
+    grid-row: 4 / 4;
+    grid-column: 1 / span 3;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 0;
+}
+
+.review-snippet .ticket-snippet{
+    width: 90%;
+    grid-row: 5 / span 1;
+    grid-column: 1 / span 3;
+}
+
+.review-snippet .edit-button{
+    grid-row: 6 / 6;
+    grid-column: 2 / span 1;
+}
+
+.review-snippet .delete-button{
+    grid-row: 6 / 6;
+    grid-column: 3 / span 1;
 }
