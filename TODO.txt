@@ -1,9 +1,7 @@
 date estimée 28/04
 
 @ mettre en forme la page de modification de tickets
-@ faire apparaitre l'image uploadé à la création d'un ticket
-
-
+@ parler des migrations dans le readme
 * ajout d'un text area pour la description lors de la création d'un ticket
 * debug du post d'un ticket
 * migration des modèles de ticket + review
@@ -29,3 +27,5 @@ date estimée 28/04
 * mise en forme le ticket dans le formulaire de création de critique
 * mise à jour des titres sur les pages de création / modification de review
 * écrire le fichier readme.md
+* debug de l'upload d'image lors d'une création de ticket + critique en meme temps
+* debug de la suppression des images stockées

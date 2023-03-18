@@ -30,7 +30,7 @@ def create_review(request: HttpRequest, ticket_pk: int = -1):
 
     if request.method == 'POST':
 
-        ticket_form = TicketForm(request.POST or None)
+        ticket_form = TicketForm(request.POST, request.FILES)
         review_form = ReviewForm(request.POST)
 
         if ticket_form.is_valid() and review_form.is_valid():
@@ -56,7 +56,6 @@ def create_review(request: HttpRequest, ticket_pk: int = -1):
             return redirect('feed')
 
         else:
-            # TODO: handle errors
             pass
 
     else:
@@ -148,6 +147,11 @@ def delete_ticket(request: HttpRequest, ticket_pk: int):
 
     # prevent the user to delete ticket not created by him
     if ticket.user == request.user:
+        try:
+            ticket.image.delete()
+        except Exception:
+            # handle non deletable images
+            pass
         ticket.delete()
 
     return redirect('posts')
